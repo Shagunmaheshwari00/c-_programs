@@ -1,0 +1,19 @@
+// Enter your code for reversed_binary_value<bool...>()
+template <bool... digits> struct ReversedBinaryValue;
+
+template <>
+struct ReversedBinaryValue<> {
+    static constexpr int value = 0;
+};
+
+template <bool first, bool... digits>
+struct ReversedBinaryValue<first, digits...>{
+    static constexpr int value = first + 2*ReversedBinaryValue<digits...>::value;
+};
+
+template <bool... digits>
+int reversed_binary_value()
+{
+ return ReversedBinaryValue<digits...>::value;   
+}
+
